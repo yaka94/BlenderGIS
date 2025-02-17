@@ -305,35 +305,48 @@ SOURCES = {
 	},
 
 
-	"GEOPORTAIL" : {
-		"name" : 'Geoportail',
-		"description" : 'Geoportail.fr',
-		"service": 'WMTS',
+	"GEOPF_WMS": {
+ 		"name": 'GéoPF WMS',
+		"description": 'Services WMS de la Géoplateforme',
+  		"service": 'WMS',
 		"grid": 'WM',
-		"matrix" : 'PM',
-		"layers" : {
-			"ORTHO" : {"urlKey" : 'ORTHOIMAGERY.ORTHOPHOTOS', "name" : 'Orthophotos', "description" : '',
-				"format" : 'jpeg', "style" : 'normal', "zmin" : 0, "zmax" : 22},
-			"SCAN" : {"urlKey" : 'GEOGRAPHICALGRIDSYSTEMS.MAPS', "name" : 'Scan', "description" : '',
-				"format" : 'jpeg', "style" : 'normal', "zmin" : 0, "zmax" : 22},
-			"CAD" : {"urlKey" : 'CADASTRALPARCELS.PARCELS', "name" : 'Cadastre', "description" : '',
-				"format" : 'png', "style" : 'bdparcellaire', "zmin" : 0, "zmax" : 22}
-		},
-		"urlTemplate": {
-			"BASE_URL" : 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?',
-			"SERVICE" : 'WMTS',
-			"VERSION" : '1.0.0',
-			"REQUEST" : 'GetTile',
-			"LAYER" : '{LAY}',
-			"STYLE" : '{STYLE}',
-			"FORMAT" : 'image/{FORMAT}',
-			"TILEMATRIXSET" : '{MATRIX}',
-			"TILEMATRIX" : '{Z}',
-			"TILEROW" : '{Y}',
-			"TILECOL" : '{X}'
-			},
-		"referer": "http://www.geoportail.gouv.fr/accueil"
-	},
+    "layers": {
+        "ORTHO": {
+            "urlKey": 'ORTHOIMAGERY.ORTHOPHOTOS',
+            "name": 'Orthophotos',
+            "description": 'Orthophotographies à haute résolution',
+            "format": 'jpeg',
+            "style": 'normal',
+            "zmin": 0,
+            "zmax": 22
+        },
+        "CADASTRE": {
+            "urlKey": 'CADASTRALPARCELS.PARCELS',
+            "name": 'Parcelles cadastrales',
+            "description": 'Limites des parcelles cadastrales',
+            "format": 'png',
+            "style": 'bdparcellaire',
+            "zmin": 0,
+            "zmax": 22
+        }
+        // Ajoutez ici d'autres couches selon vos besoins
+    },
+    "urlTemplate": {
+        "BASE_URL": 'https://data.geopf.fr/wms-r?',
+        "SERVICE": 'WMS',
+        "VERSION": '1.3.0',
+        "REQUEST": 'GetMap',
+        "CRS": '{CRS}',
+        "LAYERS": '{LAY}',
+        "FORMAT": 'image/{FORMAT}',
+        "STYLES": '{STYLE}',
+        "BBOX": '{BBOX}',
+        "WIDTH": '{WIDTH}',
+        "HEIGHT": '{HEIGHT}',
+        "TRANSPARENT": 'True'
+    },
+    "referer": 'https://data.geopf.fr/'
+}
 
 
 }
